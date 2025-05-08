@@ -23,11 +23,11 @@ int priority(char x)
 	{
 		return 0;
 	}
-	if (x=='+')//(x=='-')
+	if ((x=='+')||(x=='-'))
 	{
 		return 1;
 	}
-	if(x=='*')//(x=='y')
+	if((x=='*')||(x=='y'))
 	{
 		return 2;
 	}
