@@ -1,47 +1,57 @@
 #include <stdio.h>
 #include <stdlib.h>
-struct Node {
+struct Node 
+{
     int data;
     struct Node* next;
 };
  
-struct Node* createNode(int data) {
+struct Node* createNode(int data)
+{
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     newNode->data = data;
     newNode->next = NULL;
     return newNode;
 }
 
-void insertAtFirst(struct Node** head, int data) {
+void insertAtFirst(struct Node** head, int data) 
+{
     struct Node* newNode = createNode(data);
     newNode->next = *head;
     *head = newNode;
 }
 
-void insertAtEnd(struct Node** head, int data) {
+void insertAtEnd(struct Node** head, int data)
+{
     struct Node* newNode = createNode(data);
-    if (*head == NULL) {
+    if (*head == NULL)
+    {
         *head = newNode;
         return;
     }
     struct Node* temp = *head;
-    while (temp->next != NULL) {
+    while (temp->next != NULL)
+    {
         temp = temp->next;
     }
     temp->next = newNode;
 }
 
-void insertAtPosition(struct Node** head, int data, int position) {
+void insertAtPosition(struct Node** head, int data, int position)
+{
     struct Node* newNode = createNode(data);
-    if (position == 0) {
+    if (position == 0) 
+    {
         insertAtFirst(head,data);
         return;
     }
     struct Node* temp = *head;
-    for (int i = 0; temp != NULL && i < position - 1; i++) {
+    for (int i = 0; temp != NULL && i < position - 1; i++)
+    {
         temp = temp->next;
     }
-    if (temp == NULL) {
+    if (temp == NULL)
+    {
         printf("Position out of range\n");
         free(newNode);
         return;
@@ -49,8 +59,10 @@ void insertAtPosition(struct Node** head, int data, int position) {
     newNode->next = temp->next;
     temp->next = newNode;
 }
-void deleteFromFirst(struct Node** head) {
-    if (*head == NULL) {
+void deleteFromFirst(struct Node** head)
+{
+    if (*head == NULL)
+    {
         printf("List is empty\n");
         return;
     }
@@ -58,37 +70,46 @@ void deleteFromFirst(struct Node** head) {
     *head = temp->next;
     free(temp);
 }
-void deleteFromEnd(struct Node** head) {
-    if (*head == NULL) {
+void deleteFromEnd(struct Node** head) 
+{
+    if (*head == NULL)
+    {
         printf("List is empty\n");
         return;
     }
     struct Node* temp = *head;
-    if (temp->next == NULL) {
+    if (temp->next == NULL)
+    {
         free(temp);
         *head = NULL;
         return;
     }
-    while (temp->next->next != NULL) {
+    while (temp->next->next != NULL)
+    {
         temp = temp->next;
     }
     free(temp->next);
     temp->next = NULL;
 }
-void deleteAtPosition(struct Node** head, int position) {
-    if (*head == NULL) {
+void deleteAtPosition(struct Node** head, int position) 
+{
+    if (*head == NULL) 
+    {
         printf("List is empty\n");
         return;
     }
     struct Node* temp = *head;
-    if (position == 0) {
+    if (position == 0) 
+    {
         deleteFromFirst(head);
         return;
     }
-    for (int i = 0; temp != NULL && i < position - 1; i++) {
+    for (int i = 0; temp != NULL && i < position - 1; i++) 
+    {
         temp = temp->next;
     }
-    if (temp == NULL || temp->next == NULL) {
+    if (temp == NULL || temp->next == NULL)
+    {
         printf("Position out of range\n");
         return;
     }
@@ -97,16 +118,19 @@ void deleteAtPosition(struct Node** head, int position) {
     temp->next = next;
 }
 
-void print(struct Node* head) {
+void print(struct Node* head)
+{
     struct Node* temp = head;
-    while (temp != NULL) {
+    while (temp != NULL) 
+    {
         printf("%d -> ", temp->data);
         temp = temp->next;
     }
     printf("NULL\n");
 }
 
-int main() {
+int main()
+{
     struct Node* head = NULL;
     
     insertAtFirst(&head, 10);
